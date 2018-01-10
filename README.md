@@ -1,9 +1,10 @@
-## Deploying Nagios Agent (NRPE) using Ansible
+## Deploying Nagios Agents (.cfg) files on the nagios server using Ansible
 
 nagios_agents
 ------------
 
 This is an ansible role, which consists of ansible role directory structure and files. 
+
 
 execute this ansible role
 -------------------------

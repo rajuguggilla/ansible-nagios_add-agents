@@ -3,8 +3,7 @@
 
 - copy: src=roles/cfg/files/ dest=/home/ubuntu/devops/servers/ owner=nagios group=nagios mode=0755
 
-##- command: /home/ubuntu/devops/servers/generate1.sh
-- command: /home/ubuntu/devops/servers/generate1.sh
+- command: /home/ubuntu/devops/servers/generate.sh
   become: true
 
 - command: /etc/init.d/nagios restart

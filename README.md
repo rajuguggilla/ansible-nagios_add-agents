@@ -9,4 +9,4 @@ This is an ansible role, which consists of ansible role directory structure and 
 execute this ansible role
 -------------------------
 
-ansible-playbook nagios-add-host.yml --private-key=<path of pem file> -u=<remote user> 
+ansible-playbook nagios-add-host.yml --private-key=path of pem file -u=remote user

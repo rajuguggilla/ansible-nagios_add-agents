@@ -1,0 +1,7 @@
+---
+- name: NAGIOS ADD HOST
+## ip address of the nagios server  
+  hosts: 10.20.23.116
+  become: true
+  roles:
+   - role: nagios_agents 

@@ -1,0 +1,12 @@
+10.20.22.22,Dev-Flink Server
+10.20.22.39,dev-services-1
+10.20.23.94,dev-services-2
+10.20.23.183,dev-cassandra-1
+10.20.22.155,dev-cassandra-2
+10.20.22.204,dev-kafka
+10.20.23.51,dev-content-management
+10.20.22.105,dev-content-network
+10.20.22.250,dev-kubernetes-master-1
+10.20.23.13,dev-kubernetes-minion-1
+10.20.23.26,dev-kubernetes-minion-2
+

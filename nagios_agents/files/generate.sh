@@ -1,15 +1,30 @@
 #!/bin/bash
 ## Purpose: Generate Nagios Configuration
-mkdir -p /home/ubuntu/devops/agents/
-chown -R nagios:nagios /home/ubuntu/devops/agents/
-cat  /home/ubuntu/devops/servers/clients.csv | while read LINE
+src_dir=$HOME/devops
+dest_dir=/usr/local/nagios/etc/servers
+
+if [[ ! -e $src_dir/agents ]]; then 
+   mkdir -p $src_dir/agents
+else
+   echo "directory already exists..!"
+fi
+
+####
+if [[ ! -e $dest_dir ]]; then
+   mkdir -p $dest_dir
+else
+   echo "$dest_dir already exists..!"
+fi
+ 
+chown -R nagios:nagios $src_dir/agents/
+
+cat $src_dir/files/clients.csv | while read -r LINE
 do
     HostIP=`echo $LINE | cut -d, -f1`
     HostName=`echo $LINE | cut -d, -f2`
-    sed -e "s/XXXX/$HostName/g; s/ZZZZ/$HostIP/g" /home/ubuntu/devops/servers/template.cfg > /home/ubuntu/devops/agents/$HostIP.cfg
+    sed -e "s/XXXX/$HostName/g; s/ZZZZ/$HostIP/g" $src_dir/files/template.cfg > $src_dir/agents/$HostIP.cfg
 
-    src="/home/ubuntu/devops/agents/$HostIP.cfg"
-    dest="/usr/local/nagios/etc/servers/"
+    src_cfg=$src_dir/agents/$HostIP.cfg
 
-    cp $src $dest
+    cp $src_cfg $dest_dir/$HostIP.cfg
 done

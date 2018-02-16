@@ -1,10 +1,19 @@
 ---
 # tasks file for cfg
-
-- copy: src=roles/cfg/files/ dest=/home/ubuntu/devops/servers/ owner=nagios group=nagios mode=0755
-
-- command: /home/ubuntu/devops/servers/generate.sh
+- name: Copying the files to taget machine
+  copy: src=nagios_agents/files/ dest=/home/ubuntu/devops/files/ owner=nagios group=nagios mode=0755
   become: true
 
-- command: /etc/init.d/nagios restart
+- name: Updating directory path of all .cfg files of all nagios agents
+  replace: 
+     dest: /usr/local/nagios/etc/nagios.cfg
+     regexp: '#cfg_dir=/usr/local/nagios/etc/servers'
+     replace: 'cfg_dir=/usr/local/nagios/etc/servers/'
+
+- name: Deploying agents config files on the nagios server
+  command: /home/ubuntu/devops/files/generate.sh
+  become: true
+
+- name: Restart the nagios server
+  command: /etc/init.d/nagios restart
   become: true
